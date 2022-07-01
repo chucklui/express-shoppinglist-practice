@@ -1,6 +1,6 @@
 'use strict';
 
-const { items } = require("./fakeDb");
+let { items } = require("./fakeDb");
 
 //to require express
 const express = require("express");
@@ -32,5 +32,11 @@ app.get("/items/:name", function (req, res) {
   return res.send(item);
 });
 
+app.patch("/items/:name", function(req, res) {
+  const newItem = req.body;
+  items = items.map((e) => e.name === req.params.name ? newItem : e);
+  
+  return res.send({updated: newItem});
+})
 
 module.exports = app;
