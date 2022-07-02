@@ -11,7 +11,6 @@ router.get("/", function (req, res) {
 
 //add new items
 router.post("/", function (req, res) {
-  console.log("new item:", req);
   const newItem = req.body;
   items.push(newItem);
   return res.json({added: newItem});
@@ -26,14 +25,16 @@ router.get("/:name", function (req, res) {
 //update items according to the given name
 router.patch("/:name", function(req, res) {
   const newItem = req.body;
-  items = items.map((e) => e.name === req.params.name ? newItem : e);
-  
+  let newItems = items.map((e) => e.name === req.params.name ? newItem : e);
+  items = [...newItems];
   return res.json({updated: newItem});
 });
 
 //delete an item according to the given name
 router.delete("/:name", function(req, res) {
+//console.log("delete item name##############:", req.params.name);
   items = items.filter((elem) => elem.name !== req.params.name);
+  // console.log("items after delete:+++++++++++:", items);
   return res.json({message: "Deleted"});
 });
 
