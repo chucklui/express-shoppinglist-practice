@@ -10,7 +10,7 @@ const router = require("./routes");
 app.use(express.json());
 
 //process traditional form data => req.body (middleware)
-app.use(express.urlencoded({ extended: true}));
+// app.use(express.urlencoded({ extended: true}));
 
 app.use("/items", router);
 
