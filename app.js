@@ -2,9 +2,13 @@
 
 //to require express
 const express = require("express");
+//to fix CORS issue
+const cors = require('cors')
 //call express function
 const app = express();
 const router = require("./routes");
+
+app.use(cors())
 
 //process JSON body => req.body (middleware)
 app.use(express.json());
