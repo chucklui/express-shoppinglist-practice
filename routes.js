@@ -27,6 +27,7 @@ router.patch("/:name", function(req, res) {
   const newItem = req.body;
   let newitems = db.items.map((e) => e.name === req.params.name ? newItem : e);
   db.items = [...newitems];
+  console.log('db.items',db.items);
   return res.json({updated: newItem});
 });
 
